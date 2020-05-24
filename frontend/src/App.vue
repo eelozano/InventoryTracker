@@ -1,67 +1,19 @@
 <template>
   <div>
     <b-container>
-      <InventoryList :itemList="items" />
+      <InventoryList />
     </b-container>
   </div>
 </template>
 
 <script>
-import InventoryList from "./components/InventoryList.vue";
-
-var sampleItems = [
-  {
-    name: "Club",
-    description: "Club Description"
-  },
-  {
-    name: "Dagger",
-    description: "Dagger Description"
-  },
-  {
-    name: "Greatclub",
-    description: "Greatclub Description"
-  },
-  {
-    name: "Handaxe",
-    description: "Handaxe Description"
-  },
-  {
-    name: "Javelin",
-    description: "Javelin Description"
-  },
-  {
-    name: "Light hammer",
-    description: "Light hammer Description"
-  },
-  {
-    name: "Mace",
-    description: "Mace Description"
-  },
-  {
-    name: "Quarterstaff",
-    description: "Quarterstaff Description"
-  },
-  {
-    name: "Sickle",
-    description: "Sickle Description"
-  },
-  {
-    name: "Spear",
-    description: "Spear Description"
-  }
-];
+import InventoryList from '@/components/InventoryList.vue';
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
-    InventoryList
+    InventoryList,
   },
-  data() {
-    return {
-      items: sampleItems
-    };
-  }
 };
 </script>
 

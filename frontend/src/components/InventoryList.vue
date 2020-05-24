@@ -6,14 +6,24 @@
 </template>
 
 <script>
+import EventService from '@/services/EventService.js';
+
 export default {
-  props: {
-    itemList: {
-      type: Array,
-      required: true
-    }
-  }
+  data() {
+    return {
+      itemList: [],
+    };
+  },
+  created: function() {
+    EventService.getItems()
+      .then((response) => {
+        console.log(response.data);
+        this.itemList = response.data;
+      })
+      .catch((error) => {
+        console.log('There was an error: ', error.response);
+      });
+  },
 };
 </script>
-<style scoped>
-</style>
+<style scoped></style>
