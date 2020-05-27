@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import InventoryList from '@/components/InventoryList.vue';
+import InventoryList from '@/views/InventoryList.vue';
+import PartyList from '@/views/PartyList.vue';
 import Item from '@/views/Item.vue';
 
 Vue.use(VueRouter);
@@ -8,7 +9,8 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
-    redirect: '/items',
+    name: 'Home',
+    component: PartyList,
   },
   {
     path: '/items',
@@ -22,13 +24,14 @@ const routes = [
     props: true,
   },
   {
-    path: '/',
-    name: 'About',
-    component: InventoryList,
+    path: '/party',
+    name: 'Party',
+    component: PartyList,
   },
 ];
 
 const router = new VueRouter({
+  mode: 'history',
   routes,
 });
 

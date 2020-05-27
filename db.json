@@ -45,6 +45,20 @@
           "numberOwned": 2
         }
       ]
+    },
+    {
+      "id": 2,
+      "name": "Jane Doe",
+      "itemsOwned": [
+        {
+          "id": 2,
+          "numberOwned": 1
+        },
+        {
+          "id": 1,
+          "numberOwned": 1
+        }
+      ]
     }
   ]
 }

@@ -1,11 +1,19 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Inventory List</router-link>
-    </div>
+    <NavBar />
     <router-view />
   </div>
 </template>
+
+<script>
+import NavBar from '@/components/NavBar.vue';
+
+export default {
+  components: {
+    NavBar: NavBar,
+  },
+};
+</script>
 
 <style>
 #app {

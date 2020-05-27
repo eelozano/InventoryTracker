@@ -16,4 +16,10 @@ export default {
   getItem(id) {
     return apiClient.get('/items/' + id);
   },
+  getPeople() {
+    return apiClient.get('/people');
+  },
+  getPerson(id) {
+    return apiClient.get('/people/' + id);
+  },
 };
