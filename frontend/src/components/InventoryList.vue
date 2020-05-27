@@ -1,7 +1,19 @@
 <template>
   <div>
-    <h1>Welcome to Inventory Tracker</h1>
-    <b-table hover :items="itemList"></b-table>
+    <h1>Inventory List</h1>
+    <b-table
+      hover
+      sticky-header
+      :items="itemList"
+      :fields="fields"
+      :primary-key="'id'"
+    >
+      <template v-slot:cell(title)="data"
+        ><router-link :to="{ name: 'Item', params: { id: data.item.id } }">{{
+          data.value
+        }}</router-link></template
+      >
+    </b-table>
   </div>
 </template>
 
@@ -12,6 +24,7 @@ export default {
   data() {
     return {
       itemList: [],
+      fields: ['title', 'description'],
     };
   },
   created: function() {
