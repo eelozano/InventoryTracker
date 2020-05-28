@@ -4,7 +4,7 @@
     <PlayerCard
       v-for="player in peopleList"
       :key="player.id"
-      :person="player"
+      :player="player"
     />
   </div>
 </template>

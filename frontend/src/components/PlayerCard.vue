@@ -1,13 +1,17 @@
 <template>
   <div>
-    <b-card :title="person.name" />
+    <b-card :title="player.name">
+      <router-link :to="{ name: 'Inventory', params: { playerID: player.id } }">
+        <b-button>Inventory</b-button>
+      </router-link>
+    </b-card>
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    person: Object,
+    player: Object,
   },
 };
 </script>
