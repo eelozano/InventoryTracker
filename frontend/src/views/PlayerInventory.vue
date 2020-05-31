@@ -10,33 +10,17 @@
 </template>
 
 <script>
-import EventService from '@/services/EventService.js';
+import { mapState } from 'vuex';
 
 export default {
   props: ['playerID'],
-  data() {
-    return {
-      player: {},
-      itemList: [],
-    };
-  },
+
   created: function() {
-    EventService.getPerson(this.playerID)
-      .then((response) => {
-        this.player = response.data;
-        this.player.itemsOwned.forEach((item) => {
-          EventService.getItem(item.id)
-            .then((response) => {
-              this.itemList.push(response.data);
-            })
-            .catch((error) => {
-              console.log('There was an error: ', error.response);
-            });
-        });
-      })
-      .catch((error) => {
-        console.log('There was an error: ', error.response);
-      });
+    this.$store.dispatch('fetchPerson', this.playerID);
+    this.$store.dispatch('fetchInventory', player.itemsOwned);
+  },
+  computed: {
+    ...mapState(['itemList', 'player']),
   },
 };
 </script>

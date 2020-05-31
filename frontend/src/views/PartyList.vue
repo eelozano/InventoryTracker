@@ -10,13 +10,12 @@
 </template>
 
 <script>
-import EventService from '@/services/EventService.js';
 import PlayerCard from '@/components/PlayerCard.vue';
+import { mapState } from 'vuex';
 
 export default {
   data() {
     return {
-      peopleList: [],
       fields: ['name'],
     };
   },
@@ -24,13 +23,10 @@ export default {
     PlayerCard: PlayerCard,
   },
   created: function() {
-    EventService.getPeople()
-      .then((response) => {
-        this.peopleList = response.data;
-      })
-      .catch((error) => {
-        console.log('There was an error: ', error.response);
-      });
+    this.$store.dispatch('fetchPeople');
+  },
+  computed: {
+    ...mapState(['peopleList']),
   },
 };
 </script>

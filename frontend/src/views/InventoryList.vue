@@ -18,24 +18,19 @@
 </template>
 
 <script>
-import EventService from '@/services/EventService.js';
+import { mapState } from 'vuex';
 
 export default {
   data() {
     return {
-      itemList: [],
       fields: ['title', 'description'],
     };
   },
   created: function() {
-    EventService.getItems()
-      .then((response) => {
-        console.log(response.data);
-        this.itemList = response.data;
-      })
-      .catch((error) => {
-        console.log('There was an error: ', error.response);
-      });
+    this.$store.dispatch('fetchItems');
+  },
+  computed: {
+    ...mapState(['itemList']),
   },
 };
 </script>

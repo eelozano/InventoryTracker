@@ -6,23 +6,16 @@
 </template>
 
 <script>
-import EventService from '@/services/EventService';
+import { mapState } from 'vuex';
 
 export default {
   props: ['id'],
-  data() {
-    return {
-      item: {},
-    };
-  },
+
   created: function() {
-    EventService.getItem(this.id)
-      .then((response) => {
-        this.item = response.data;
-      })
-      .catch((error) => {
-        console.log('There was an error: ', error.response);
-      });
+    this.$store.dispatch('fetchItem', this.id);
+  },
+  computed: {
+    ...mapState(['item']),
   },
 };
 </script>
