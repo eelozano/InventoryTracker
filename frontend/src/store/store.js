@@ -28,6 +28,9 @@ export default new Vuex.Store({
     SET_INVENTORY(state, inventoryPayload) {
       state.playerInventory.push(inventoryPayload);
     },
+    CLEAR_INVENTORY(state) {
+      state.playerInventory = [];
+    },
   },
   actions: {
     fetchItems({ commit }) {
@@ -67,6 +70,7 @@ export default new Vuex.Store({
         });
     },
     fetchInventory({ commit }, inventory) {
+      commit('CLEAR_INVENTORY');
       inventory.forEach((item) => {
         EventService.getItem(item.id)
           .then((response) => {

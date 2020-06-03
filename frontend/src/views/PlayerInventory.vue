@@ -2,7 +2,7 @@
   <div>
     <h1>{{ player.name }}'s Inventory</h1>
     <ul>
-      <li v-for="item in itemList" :key="item.id">
+      <li v-for="item in playerInventory" :key="item.id">
         {{ item.title }}
       </li>
     </ul>
@@ -17,10 +17,10 @@ export default {
 
   created: function() {
     this.$store.dispatch('fetchPerson', this.playerID);
-    this.$store.dispatch('fetchInventory', player.itemsOwned);
+    this.$store.dispatch('fetchInventory', this.player.itemsOwned);
   },
   computed: {
-    ...mapState(['itemList', 'player']),
+    ...mapState(['playerInventory', 'player']),
   },
 };
 </script>

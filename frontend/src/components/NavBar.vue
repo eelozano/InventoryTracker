@@ -2,8 +2,9 @@
   <div>
     <nav>
       <div id="nav">
+        <router-link :to="{ name: 'Party' }">Party</router-link> |
         <router-link :to="{ name: 'Items' }">Inventory List</router-link> |
-        <router-link :to="{ name: 'Party' }">Party</router-link>
+        <router-link :to="{ name: 'CreateItem' }">Add Item</router-link>
       </div>
     </nav>
   </div>

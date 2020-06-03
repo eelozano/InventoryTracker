@@ -4,6 +4,7 @@ import InventoryList from '@/views/InventoryList.vue';
 import PartyList from '@/views/PartyList.vue';
 import Item from '@/views/Item.vue';
 import PlayerInventory from '@/views/PlayerInventory.vue';
+import CreateItem from '@/views/CreateItem.vue';
 
 Vue.use(VueRouter);
 
@@ -34,6 +35,11 @@ const routes = [
     name: 'Inventory',
     component: PlayerInventory,
     props: true,
+  },
+  {
+    path: '/items/create',
+    name: 'CreateItem',
+    component: CreateItem,
   },
 ];
 
