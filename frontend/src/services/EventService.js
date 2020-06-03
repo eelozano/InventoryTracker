@@ -22,4 +22,7 @@ export default {
   getPerson(id) {
     return apiClient.get('/people/' + id);
   },
+  postItem(item) {
+    return apiClient.post('/items/', item);
+  },
 };

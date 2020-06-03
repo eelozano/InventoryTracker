@@ -14,6 +14,9 @@ export default {
   components: {
     NavBar: NavBar,
   },
+  created: function() {
+    this.$store.dispatch('fetchItems');
+  },
 };
 </script>
 

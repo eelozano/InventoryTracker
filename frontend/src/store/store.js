@@ -7,7 +7,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     itemList: [],
-    item: [],
+    item: {},
     peopleList: [],
     player: {},
     playerInventory: [],
@@ -18,6 +18,9 @@ export default new Vuex.Store({
     },
     SET_ITEM(state, itemPayload) {
       state.item = itemPayload;
+    },
+    ADD_ITEM(state, itemPayload) {
+      state.itemList.push(itemPayload);
     },
     SET_PEOPLE(state, peoplePayload) {
       state.peopleList = peoplePayload;
@@ -50,6 +53,11 @@ export default new Vuex.Store({
         .catch((error) => {
           console.log('There was an error: ', error.response);
         });
+    },
+    createItem({ commit }, item) {
+      return EventService.postItem(item).then(() => {
+        commit('ADD_ITEM', item);
+      });
     },
     fetchPeople({ commit }) {
       EventService.getPeople()

@@ -26,9 +26,6 @@ export default {
       fields: ['title', 'description'],
     };
   },
-  created: function() {
-    this.$store.dispatch('fetchItems');
-  },
   computed: {
     ...mapState(['itemList']),
   },
