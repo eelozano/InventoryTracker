@@ -43,7 +43,13 @@ export default {
       };
     },
     createItem() {
-      this.$store.dispatch('createItem', this.item);
+      this.$store.dispatch('createItem', this.item).then(() => {
+        this.$router.push({
+          name: 'Item',
+          params: { id: this.item.id },
+        });
+        this.item = this.createFreshItem();
+      });
     },
   },
   computed: {

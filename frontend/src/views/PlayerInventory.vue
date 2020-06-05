@@ -16,8 +16,9 @@ export default {
   props: ['playerID'],
 
   created: function() {
-    this.$store.dispatch('fetchPerson', this.playerID);
-    this.$store.dispatch('fetchInventory', this.player.itemsOwned);
+    this.$store.dispatch('fetchPerson', this.playerID).then(() => {
+      this.$store.dispatch('fetchInventory', this.player.itemsOwned);
+    });
   },
   computed: {
     ...mapState(['playerInventory', 'player']),

@@ -37,56 +37,83 @@ export default new Vuex.Store({
   },
   actions: {
     fetchItems({ commit }) {
-      EventService.getItems()
-        .then((response) => {
-          commit('SET_ITEMS', response.data);
-        })
-        .catch((error) => {
-          console.log('There was an error: ', error.response);
-        });
-    },
-    fetchItem({ commit }, id) {
-      EventService.getItem(id)
-        .then((response) => {
-          commit('SET_ITEM', response.data);
-        })
-        .catch((error) => {
-          console.log('There was an error: ', error.response);
-        });
-    },
-    createItem({ commit }, item) {
-      return EventService.postItem(item).then(() => {
-        commit('ADD_ITEM', item);
-      });
-    },
-    fetchPeople({ commit }) {
-      EventService.getPeople()
-        .then((response) => {
-          commit('SET_PEOPLE', response.data);
-        })
-        .catch((error) => {
-          console.log('There was an error: ', error.response);
-        });
-    },
-    fetchPerson({ commit }, playerID) {
-      EventService.getPerson(playerID)
-        .then((response) => {
-          commit('SET_PLAYER', response.data);
-        })
-        .catch((error) => {
-          console.log('There was an error: ', error.response);
-        });
-    },
-    fetchInventory({ commit }, inventory) {
-      commit('CLEAR_INVENTORY');
-      inventory.forEach((item) => {
-        EventService.getItem(item.id)
+      return new Promise((resolve, reject) => {
+        EventService.getItems()
           .then((response) => {
-            commit('SET_INVENTORY', response.data);
+            commit('SET_ITEMS', response.data);
+            resolve();
           })
           .catch((error) => {
             console.log('There was an error: ', error.response);
+            reject();
           });
+      });
+    },
+    fetchItem({ commit }, id) {
+      return new Promise((resolve, reject) => {
+        EventService.getItem(id)
+          .then((response) => {
+            commit('SET_ITEM', response.data);
+            resolve();
+          })
+          .catch((error) => {
+            console.log('There was an error: ', error.response);
+            reject();
+          });
+      });
+    },
+    createItem({ commit }, item) {
+      return new Promise((resolve, reject) => {
+        EventService.postItem(item)
+          .then(() => {
+            commit('ADD_ITEM', item);
+            resolve();
+          })
+          .catch((error) => {
+            console.log('There was an error: ', error);
+            reject();
+          });
+      });
+    },
+    fetchPeople({ commit }) {
+      return new Promise((resolve, reject) => {
+        EventService.getPeople()
+          .then((response) => {
+            commit('SET_PEOPLE', response.data);
+            resolve();
+          })
+          .catch((error) => {
+            console.log('There was an error: ', error.response);
+            reject();
+          });
+      });
+    },
+    fetchPerson({ commit }, playerID) {
+      return new Promise((resolve, reject) => {
+        EventService.getPerson(playerID)
+          .then((response) => {
+            commit('SET_PLAYER', response.data);
+            resolve();
+          })
+          .catch((error) => {
+            console.log('There was an error: ', error.response);
+            reject();
+          });
+      });
+    },
+    fetchInventory({ commit }, inventory) {
+      return new Promise((resolve, reject) => {
+        inventory.forEach((item) => {
+          EventService.getItem(item.id)
+            .then((response) => {
+              commit('SET_INVENTORY', response.data);
+              resolve();
+            })
+            .catch((error) => {
+              console.log('There was an error: ', error.response);
+              reject();
+            });
+        });
       });
     },
   },
